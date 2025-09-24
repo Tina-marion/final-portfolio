@@ -63,17 +63,15 @@ exports.onCreateNode = ({ node, getNode, actions }) => {
 exports.createPages = ({ actions, graphql }) => {
   const { createPage } = actions;
   const caseStudyTemplate = path.resolve('src/templates/case-study.js');
-  const blogPostTemplate = path.resolve('src/templates/blog-post.js');
-  const tagTemplate = path.resolve('src/templates/tags.js');
+  // Blog templates removed - no longer needed
+  // const blogPostTemplate = path.resolve('src/templates/blog-post.js');
+  // const tagTemplate = path.resolve('src/templates/tags.js');
 
   return graphql(`
     {
       allMarkdownRemark {
         edges {
           node {
-            frontmatter {
-              tags
-            }
             fields {
               slug
               posttype
@@ -98,33 +96,8 @@ exports.createPages = ({ actions, graphql }) => {
             slug: node.fields.slug,
           },
         });
-      } else {
-        const tagSet = new Set();
-        // for each tags on the frontmatter add them to the set
-        node.frontmatter.tags.forEach(tag => tagSet.add(tag));
-
-        const tagList = Array.from(tagSet);
-        // for each tags create a page with the specific `tag slug` (/blog/tags/:name)
-        // pass the tag through the PageContext
-        tagList.forEach(tag => {
-          createPage({
-            path: `/blog/tags/${slugify(tag)}/`,
-            component: tagTemplate,
-            context: {
-              tag,
-            },
-          });
-        });
-
-        // create each individual blog post with `blogPostTemplate`
-        createPage({
-          path: node.fields.slug,
-          component: blogPostTemplate,
-          context: {
-            slug: node.fields.slug,
-          },
-        });
       }
+      // Blog functionality removed - no longer creating blog pages or tag pages
     });
   });
 };

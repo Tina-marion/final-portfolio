@@ -105,13 +105,14 @@ module.exports = {
         showSpinner: false,
       },
     },
-    {
-      resolve: 'gatsby-plugin-google-analytics',
-      options: {
-        trackingId: config.googleAnalyticsID,
-        head: true,
-      },
-    },
+    // Google Analytics temporarily disabled - no tracking ID provided
+    // {
+    //   resolve: 'gatsby-plugin-google-analytics',
+    //   options: {
+    //     trackingId: config.googleAnalyticsID,
+    //     head: true,
+    //   },
+    // },
     // others
     {
       resolve: 'gatsby-plugin-robots-txt',
