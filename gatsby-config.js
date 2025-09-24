@@ -35,13 +35,6 @@ module.exports = {
               noInlineHighlight: false,
             },
           },
-          {
-            resolve: `gatsby-remark-images`,
-            options: {
-              maxWidth: 590,
-              showCaptions: true,
-            },
-          },
           `gatsby-plugin-social-banners`,
         ],
       },
@@ -64,40 +57,23 @@ module.exports = {
         path: `${__dirname}/content/case-studies`,
       },
     },
-    {
-      resolve: `gatsby-source-filesystem`,
-      options: {
-        name: 'blog',
-        path: `${__dirname}/content/blog/`,
-      },
-    },
-
-    // IMAGE TRANSFORMER
-    `gatsby-transformer-sharp`,
-    `gatsby-plugin-sharp`,
-    {
-      resolve: `gatsby-source-filesystem`,
-      options: {
-        name: `images`,
-        path: `src/static/images`,
-      },
-    },
 
     // manifest & helmet
     `gatsby-plugin-react-helmet`,
 
-    {
-      resolve: `gatsby-plugin-manifest`,
-      options: {
-        name: config.siteTitleAlt,
-        short_name: config.siteShortName,
-        start_url: `/`,
-        background_color: config.backgroundColor,
-        theme_color: config.themeColor,
-        display: `standalone`,
-        icon: config.siteLogo,
-      },
-    },
+    // Manifest temporarily disabled - requires icon processing with Sharp
+    // {
+    //   resolve: `gatsby-plugin-manifest`,
+    //   options: {
+    //     name: config.siteTitleAlt,
+    //     short_name: config.siteShortName,
+    //     start_url: `/`,
+    //     background_color: config.backgroundColor,
+    //     theme_color: config.themeColor,
+    //     display: `standalone`,
+    //     // icon: config.siteLogo, // Temporarily disabled - requires Sharp
+    //   },
+    // },
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
     // `gatsby-plugin-offline`,
@@ -155,7 +131,7 @@ module.exports = {
     {
       resolve: `gatsby-plugin-sitemap`,
       options: {
-        exclude: [`/blog/tags/*`, `/goodies`],
+        exclude: [`/goodies`],
       },
     },
     `gatsby-plugin-styled-components`,

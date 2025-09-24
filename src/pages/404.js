@@ -10,7 +10,7 @@ const NotFoundPage = () => (
     <SEO title="404: Not found" />
     <h1>Opps, seems like you are lost!</h1>
     <p>
-      Mind going back? or <Link to="/blog">read some blogs</Link>
+      Mind going back? or <Link to="/">return home</Link>
     </p>
   </Layout>
 );

@@ -9,7 +9,7 @@ import IFrame from '@common/IFrame';
 import Button, { IconButton } from '@common/Button';
 
 import { ProjectLinks } from '@components/Projects/ProjectTemplate.style';
-import SocialShareSection from '@components/Blog/SocialShareSection';
+// Social sharing removed with blog components
 import SplitLayout from '@components/common/SplitLayout';
 
 import { InfoTitle, CaseStudyWrapper } from './case-study.style';
@@ -81,11 +81,8 @@ const CaseStudy = ({ data }) => {
           }
           aside={
             <div>
-              <h4>Share on</h4>
-              <SocialShareSection
-                baseSlugUrl={baseSlugUrl}
-                title={study.title}
-              />
+              <h4>Case Study</h4>
+              <p>Detailed project showcase</p>
             </div>
           }
         />

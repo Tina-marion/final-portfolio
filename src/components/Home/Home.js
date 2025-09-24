@@ -58,7 +58,7 @@ const Home = () => {
         {/* <Parallax y={[50, -50]} className="home__text"> */}
         <div className="home__text">
           <p>Hello, I’m</p>
-          <h1>ANURAG HAZRA</h1>
+          <h1>TINA MARION ABWOR</h1>
           <p className="adjust">CREATIVE FRONT-END WEB DEVELOPER</p>
 
           <div className="home__CTA">
@@ -70,17 +70,17 @@ const Home = () => {
               <IconLink
                 label="github"
                 icon={['fab', 'github']}
-                href="//github.com/anuraghazra"
+                href="//github.com/tinamarion"
               />
               <IconLink
                 label="twitter"
                 icon={['fab', 'twitter']}
-                href="//twitter.com/anuraghazru"
+                href="//twitter.com/tinamarion"
               />
               <IconLink
                 label="codepen"
                 icon={['fab', 'codepen']}
-                href="//codepen.io/anuraghazra"
+                href="//codepen.io/tinamarion"
               />
             </div>
           </div>

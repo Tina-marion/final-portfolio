@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { useStaticQuery, graphql } from 'gatsby';
 import { MapInteractionCSS } from 'react-map-interaction';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import Img from 'gatsby-image';
 
 import PageHeader from '@common/PageHeader';
 import Button, { IconButton } from '@common/Button';
@@ -17,15 +16,16 @@ import {
   LightBoxCloseButton,
 } from './Concepts.style';
 
-const Card = React.memo(({ nodes, currentImg, openLightbox }) => (
+const Card = React.memo(({ nodes, openLightbox }) => (
   <ConceptCard>
     <div
       style={{ width: '100%', height: '100%' }}
-      onClick={() => openLightbox(currentImg)}
+      onClick={openLightbox}
     >
-      <Img
-        fluid={currentImg.node.childImageSharp.fluid}
+      <img
+        src={`/images/${nodes.node.links.image}`}
         alt={nodes.node.title}
+        style={{ width: '100%', height: '100%', objectFit: 'cover' }}
       />
     </div>
 
@@ -92,21 +92,6 @@ const Concepts = () => {
             }
           }
         }
-        allFile(
-          filter: { name: { regex: "/^concept_/" } }
-          sort: { fields: name }
-        ) {
-          edges {
-            node {
-              relativePath
-              childImageSharp {
-                fluid(quality: 90, maxWidth: 600) {
-                  ...GatsbyImageSharpFluid
-                }
-              }
-            }
-          }
-        }
       }
     `
   );
@@ -116,13 +101,11 @@ const Concepts = () => {
       <PageHeader>Concepts</PageHeader>
       <Grid collapseHeight="1000px" showAll={showAll}>
         {concepts.allConceptsJson.edges.map((nodes, index) => {
-          let currentImg = concepts.allFile.edges[index];
           return (
             <Card
               key={nodes.node.id}
               nodes={nodes}
-              currentImg={currentImg}
-              openLightbox={openLightbox}
+              openLightbox={() => openLightbox(nodes.node)}
             />
           );
         })}
@@ -134,12 +117,14 @@ const Concepts = () => {
         )}
       </Grid>
 
-      {isLightboxOpen && (
+      {isLightboxOpen && selectedImg && (
         <Lightbox data-testid="lightbox" onClick={closeLightBox}>
           <MapInteractionCSS>
-            <Img
+            <img
               className="lightbox__gatsbyimage"
-              fluid={selectedImg.node.childImageSharp.fluid}
+              src={`/images/${selectedImg.links.image}`}
+              alt={selectedImg.title}
+              style={{ maxWidth: '100%', maxHeight: '100%' }}
             />
           </MapInteractionCSS>
 
